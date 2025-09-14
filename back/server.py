@@ -10,7 +10,13 @@ from openai import OpenAI
 import uvicorn
 import json, re
 
-# OPENAI_API = ""
+OPENAI_API = ""
+
+useai = False
+
+if(OPENAI_API != ""):
+    useai = True
+
 
 assistant_content = """
     You are a system that reads images and rates cars in those images.
@@ -55,48 +61,42 @@ async def detect(files: list[UploadFile] = File(...)):
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
 
+        if(useai):
+            # OPENAI RESPONSES
+            buf1 = io.BytesIO()
+            image.save(buf1, format="PNG", quality=50)  # convert to PNG bytes
+            img_bytes1 = buf1.getvalue()
+            img_base64_1 = base64.b64encode(img_bytes1).decode("utf-8")
 
-        # OPENAI RESPONSES
-        buf1 = io.BytesIO()
-        image.save(buf1, format="PNG", quality=50)  # convert to PNG bytes
-        img_bytes1 = buf1.getvalue()
-        img_base64_1 = base64.b64encode(img_bytes1).decode("utf-8")
+            data_url = f"data:image/png;base64,{img_base64_1}"
 
-        data_url = f"data:image/png;base64,{img_base64_1}"
+            response = client.responses.create(
+                model="gpt-4o-mini",   
+                input=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "input_text", "text": assistant_content},
+                            {"type": "input_image", "image_url": data_url},
+                        ],
+                    }
+                ],
+            )
 
-        response = client.responses.create(
-            model="gpt-4o-mini",   # ✅ vision-capable model
-            input=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "input_text", "text": assistant_content},
-                        {"type": "input_image", "image_url": data_url},
-                    ],
-                }
-            ],
-        )
+            reply = response.output_text.strip()
 
-        # The new SDK exposes the text with `.output_text`
-        # reply = response.output_text
+            match = re.search(r"\{.*\}", reply, re.DOTALL)
+            if match:
+                try:
+                    reply_json = json.loads(match.group(0))
+                except json.JSONDecodeError:
+                    reply_json = {"error": "invalid JSON format returned"}
+            else:
+                reply_json = {"error": "no JSON found in response"}
 
-        reply = response.output_text.strip()
+            openai_messages.append(reply_json)
 
-        # Try match JSON block
-        match = re.search(r"\{.*\}", reply, re.DOTALL)
-        if match:
-            try:
-                reply_json = json.loads(match.group(0))
-            except json.JSONDecodeError:
-                reply_json = {"error": "invalid JSON format returned"}
-        else:
-            reply_json = {"error": "no JSON found in response"}
-
-        openai_messages.append(reply_json)
         
-        # openai_messages.append({"analysis": reply})
-
-
 
 
 
