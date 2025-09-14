@@ -15,7 +15,7 @@ It takes an image as input and returns a JSON response with ratings on **dirtine
     "desc": "Car is moderately dirty, slightly damaged."
   }
 
-Requirements
+## Requirements
 - Python 3.10+
 - Node.js (for client-side)
 - FastAPI (pip install fastapi uvicorn)
@@ -23,7 +23,7 @@ Requirements
 - Other dependencies: 
 
 
-How to Run
+## How to Run
 NOTE: this github project doesn't have venv so you will need to make it yourself. Also it may not work properly without OPENAI API key that is a secret key and which you will need to mannualy type in. If you don't have it you still can run the project, though the ratings will not be accurate.
 
 1. Clone repo
@@ -49,12 +49,12 @@ Open the client (JavaScript/HTML app in BLANK) and upload an image.
 It will send the image to the FastAPI server and display the JSON result.
 
 
-Data & Licenses
+## Data & Licenses
 - Uses OpenAI API for image analysis (see OpenAI Terms of Use).
 - Uploaded images are processed through the API but not stored locally.
 - Datasets, images, or third-party libs were included: Roboflow "CarDD" dataset
 
-Limitations
+## Limitations
 - The model may not always return perfectly valid JSON; server includes fallback parsing.
 - Ratings are approximate and not suitable for official insurance / legal use.
 - Requires active internet connection + valid OpenAI API key.
