@@ -24,24 +24,27 @@ Requirements
 
 
 How to Run
-NOTE: this github project doesn't have venv so you will need to make it yourself. Also it will not run without OPENAI API key that is a secret key.
+NOTE: this github project doesn't have venv so you will need to make it yourself. Also it will not run without OPENAI API key that is a secret key and which you will need to mannualy type in.
 
 1. Clone repo
-git clone BLANK
-cd BLANK
+git clone https://github.com/AyaRadiata/indrive_nand_solution_final
+cd https://github.com/AyaRadiata/indrive_nand_solution_final
 
-2. Install Python deps
+2. Create Virtual Environment and activate it
+py -m venv .venv
+.venv/Scripts/Activate
+
+3. Install Python deps
 pip install openai fastapi pydantic pillow ultralytics uvicorn python-multipart
 
-3. Set environment variable
-export OPENAI_API_KEY=your_api_key_here
-(on Windows use set instead of export)
-or just write it mannualy in server.py
+4. Set OpenAI API key
+write in server.py
+OPENAI_API = "YOUR KEY"
 
-4. Start FastAPI server
+6. Start FastAPI server
 uvicorn server:app --reload
 
-Run client
+7. Run client
 Open the client (JavaScript/HTML app in BLANK) and upload an image.
 It will send the image to the FastAPI server and display the JSON result.
 
