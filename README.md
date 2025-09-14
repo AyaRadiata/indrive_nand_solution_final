@@ -24,7 +24,7 @@ Requirements
 
 
 How to Run
-NOTE: this github project doesn't have venv so you will need to make it yourself. Also it will not run without OPENAI API key that is a secret key and which you will need to mannualy type in.
+NOTE: this github project doesn't have venv so you will need to make it yourself. Also it may not work properly without OPENAI API key that is a secret key and which you will need to mannualy type in. If you don't have it you still can run the project, though the ratings will not be accurate.
 
 1. Clone repo
 git clone https://github.com/AyaRadiata/indrive_nand_solution_final
