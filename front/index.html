@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body id="body" data-state="1">
+    <div id="login_page" class="page">
+        <div class="mini_form">
+            <h1>inDrive <img src="./media/logo.jpg" alt=""></h1>
+            <p><u>Login</u> as the new Driver!</p>
+            <div class="long_button btn" id="start_btn">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+                <span>Let's Start</span>
+            </div>
+            <div class="long_button btn" id="close_btn">
+                <ion-icon name="backspace-outline"></ion-icon>
+                <span>Maybe Later</span>
+            </div>
+        </div>
+    </div>
+    <div id="page_1" class="page">
+        <img src="media/ilus.png" alt="">
+        <div id="p1_main_title">
+            <u>Firstly</u>, Let Us Know More About You & <u>Your Car</u>
+        </div>
+        <div id="p1_button" class="btn">
+            Sure
+        </div>
+    </div>
+    <div id="page_2" class="page">
+        <div id="p2_main_title">
+            Upload images of your car
+        </div>
+        <div id="p2_content">
+            <form enctype="multipart/form-data" id="file_form">
+                <label for="files">Select files to upload:</label>
+                <input type="file" id="files" name="uploaded_files[]" multiple>
+            </form>
+            <div class="btns_con">
+                <div id="later_btn" class="p2_btns btn">Go Back</div>
+                <div id="submit_btn" class="p2_btns btn">Submit</div>
+            </div>
+        </div>
+    </div>
+    <div id="page_load" class="page">
+        Loading...
+    </div>
+    <div id="page_3" class="page">
+        <div class="p3_cap">Results</div>
+        <div id="result_imgs_con">
+            <div id="result_imgs_slider">
+                <!-- <div class="res_img_card">
+                    <img src="media/logo.jpg" alt="No Img" class="result_img">
+                </div> -->
+            </div>
+        </div>
+        <div id="pop_up">
+            <div id="popup_title">see more</div>
+            <div id="result_text_1" class="result_text">
+                <span>Dirtiness Rating: </span>
+                <div id="result_text_1_rate" class="rating" data-rating="3">
+                    <!-- <div class="rate_dot" data-rd-check="true" data-rd-col="green"></div> -->
+                </div>
+            </div>
+            <div id="result_text_2" class="result_text">
+                <span>Damage Rating: </span>
+                <div id="result_text_2_rate" class="rating" data-rating="4">
+                </div>
+            </div>
+            <div id="result_text_3" class="result_text">
+                <span>AI description: </span>
+                <div id="aidesc">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
