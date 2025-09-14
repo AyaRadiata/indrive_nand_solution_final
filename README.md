@@ -48,6 +48,11 @@ uvicorn server:app --reload
 Open the client (JavaScript/HTML app in BLANK) and upload an image.
 It will send the image to the FastAPI server and display the JSON result.
 
+## 📑 How to use
+1. Open the website
+2. Click appropariate buttons to navigate to file upload
+3. Upload files you want to check
+4. See the result
 
 ## 📂 Data & Licenses
 - Uses OpenAI API for image analysis (see OpenAI Terms of Use).
